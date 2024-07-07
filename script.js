@@ -1,3 +1,16 @@
+/*things to accomplish
+1. when clicking "add employee", i am presented with a series of prompts asking for first name, last name, and salary
+2. after adding an employee, asked to continue or cancel
+3. if choosing to continue, add new employee
+4. if choosing to cancel, display employee data on the page in alphabetical order of last name, console.log() will show aggregated data.
+
+other notes: 
+-need to use a while loop for collectEmployees
+isNaN function needed for salary input
+need to displayAverageSalary. template literal string
+getRandomEmployee: us math.random object
+*/
+
 // Get a reference to the #add-employees-btn element
 const addEmployeesBtn = document.querySelector('#add-employees-btn');
 
@@ -17,19 +30,28 @@ return final array
 */
 let employeesArray = [];
 
-const collectEmployees = function(employeesArr = []) {
+// employeesArray = []
+const collectEmployees = function() {
+  let enterFirstName = prompt("Enter first name:");
+  let enterLastName = prompt("Enter last name:");
+  let enterSalary = prompt("Enter salary:");
+  let employeeData = {
+    firstName: enterFirstName,
+    lastName: enterLastName,
+    salary: enterSalary,
+  }
   // TODO: Get user input to create and return an array of employee objects
   // // const firstName = "Fred"
   // // const lastName = "Flinstone"
   // const salary = "300"
 
-  employeesArr.push({firstName, lastName, salary})
+  employeesArray.push(employeeData);
 
-  const doAgain = confirm("Do again?")
+  const doAgain = confirm("Do you want to add another employee?")
   if(doAgain){
-    return collectEmployees(employeesARR)
+    return collectEmployees();
    } else {
-      return employeesArr
+      return employeesArray;
     }
   }
 
