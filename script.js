@@ -28,13 +28,13 @@ create an object w/ info in it. add obj to array
 rinse and repeat.
 return final array
 */
-let employeesArray = [];
+let employees = [];
 
 // employeesArray = []
 const collectEmployees = function() {
   let enterFirstName = prompt("Enter first name:");
   let enterLastName = prompt("Enter last name:");
-  let enterSalary = prompt("Enter salary:");
+  let enterSalary = parseFloat(prompt("Enter salary:"));
   let employeeData = {
     firstName: enterFirstName,
     lastName: enterLastName,
@@ -45,24 +45,45 @@ const collectEmployees = function() {
   // // const lastName = "Flinstone"
   // const salary = "300"
 
-  employeesArray.push(employeeData);
+  employees.push(employeeData);
 
   const doAgain = confirm("Do you want to add another employee?")
   if(doAgain){
     return collectEmployees();
    } else {
-      return employeesArray;
+      return employees;
     }
   }
 
 // Display the average salary
 const displayAverageSalary = function(employeesArray) {
-  // TODO: Calculate and display the average salary
+    if (employeesArray.length === 0) {
+      console.log(`No employees entered.`);
+      return;
+    }
+
+    let totalSalary = 0;
+    for (let i = 0; i < employeesArray.length; i++) {
+      totalSalary += employeesArray[i].salary;
+    }
+
+    let averageSalary = totalSalary / employeesArray.length;
+    console.log(`The average employee salary between our ${employeesArray.length+1} employee(s) is ${averageSalary.toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD"
+    })}`);
 }
 
 // Select a random employee
 const getRandomEmployee = function(employeesArray) {
-  // TODO: Select and display a random employee
+  if (employeesArray.length === 0) {
+    console.log('No employees entered.');
+    return;
+  }
+
+  let randomIndex = Math.floor(Math.random() * employeesArray.length);
+  let randomEmployee = employeesArray[randomIndex];
+  console.log("Congratulations to " + randomEmployee.firstName + " " +randomEmployee.lastName + ", our random drawing winner!");
 }
 
 /*
