@@ -34,17 +34,16 @@ let employees = [];
 const collectEmployees = function() {
   let enterFirstName = prompt("Enter first name:");
   let enterLastName = prompt("Enter last name:");
-  let enterSalary = parseFloat(prompt("Enter salary:"));
+  let enterSalary = prompt("Enter salary:");
+
+  let normalizedSalary = parseFloat(enterSalary.replace(/[^\d.-]/g, '')); 
+  // Remove non-numeric characters
+
   let employeeData = {
     firstName: enterFirstName,
     lastName: enterLastName,
-    salary: enterSalary,
+    salary: normalizedSalary,
   }
-  // TODO: Get user input to create and return an array of employee objects
-  // // const firstName = "Fred"
-  // // const lastName = "Flinstone"
-  // const salary = "300"
-
   employees.push(employeeData);
 
   const doAgain = confirm("Do you want to add another employee?")
@@ -81,9 +80,9 @@ const getRandomEmployee = function(employeesArray) {
     return;
   }
 
-  let randomIndex = Math.floor(Math.random() * employeesArray.length);
-  let randomEmployee = employeesArray[randomIndex];
-  console.log("Congratulations to " + randomEmployee.firstName + " " +randomEmployee.lastName + ", our random drawing winner!");
+  let Index = Math.floor(Math.random() * employeesArray.length);
+  let randomEmployee = employeesArray[Index];
+  console.log("Congratulations to " + randomEmployee.firstName + " " + randomEmployee.lastName + ", our random drawing winner!");
 }
 
 /*
